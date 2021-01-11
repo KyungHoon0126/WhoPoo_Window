@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WhoPoo.Service;
+using WhoPoo.ViewModel;
 
 namespace WhoPoo
 {
@@ -8,7 +9,8 @@ namespace WhoPoo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private WhoPooService whoPooService = new WhoPooService();
+        private static readonly WhoPooService whoPooService = new WhoPooService();
+        private static readonly WhoPooViewModel whoPooViewModel = new WhoPooViewModel();
 
         public MainWindow()
         {
@@ -18,6 +20,7 @@ namespace WhoPoo
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            this.DataContext = whoPooViewModel;
             await whoPooService.GetMatchList("후쿠시마원자");
             await whoPooService.GetMatches(4897529222);
         }

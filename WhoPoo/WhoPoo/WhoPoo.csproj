@@ -63,6 +63,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\BanModel.cs" />
+    <Compile Include="Model\Enums\EChampions.cs" />
+    <Compile Include="Model\Enums\ESpeels.cs" />
     <Compile Include="Model\MatchesModel.cs" />
     <Compile Include="Model\MatchesResultModel.cs" />
     <Compile Include="Model\MatchListModel.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Service\Response\MatchesResponse.cs" />
     <Compile Include="Service\Response\MatchListResponse.cs" />
     <Compile Include="Service\WhoPooService.cs" />
+    <Compile Include="ViewModel\WhoPooViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
