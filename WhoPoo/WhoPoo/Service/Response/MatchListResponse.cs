@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WhoPoo.Model
+namespace WhoPoo.Service.Response
 {
-    public class WhoPooModel
+    public class MatchListResponse
     {
 
     }
