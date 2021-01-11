@@ -9,8 +9,7 @@ namespace WhoPoo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly WhoPooService whoPooService = new WhoPooService();
-        private static readonly WhoPooViewModel whoPooViewModel = new WhoPooViewModel();
+        private WhoPooViewModel whoPooViewModel = new WhoPooViewModel(new WhoPooService());
 
         public MainWindow()
         {
@@ -18,11 +17,9 @@ namespace WhoPoo
             Loaded += MainWindow_Loaded;
         }
 
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = whoPooViewModel;
-            await whoPooService.GetMatchList("후쿠시마원자");
-            await whoPooService.GetMatches(4897529222);
         }
     }
 }

@@ -38,6 +38,9 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=8.0.0.1909, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.0.0.1909\lib\net47\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -64,7 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\BanModel.cs" />
     <Compile Include="Model\Enums\EChampions.cs" />
-    <Compile Include="Model\Enums\ESpeels.cs" />
+    <Compile Include="Model\Enums\ESpells.cs" />
     <Compile Include="Model\MatchesModel.cs" />
     <Compile Include="Model\MatchesResultModel.cs" />
     <Compile Include="Model\MatchListModel.cs" />

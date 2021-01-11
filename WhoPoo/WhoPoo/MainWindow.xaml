@@ -8,6 +8,35 @@
         WindowStartupLocation="CenterScreen"
         Title="WhoPoo" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox Text="{Binding Name}" 
+                     Height="50" Width="700"/>
+            <Button Content="조회하기" 
+                    Width="80"
+                    Command="{Binding SearchMatchListCommand}"/>
+        </StackPanel>
+
+        <ListView x:Name="lvMatchList" Grid.Row="1" Margin="5"
+                  ItemsSource="{Binding MatchListItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding PlatformId}" FontSize="15"/>
+                        <TextBlock Text="{Binding GameId}" FontSize="15"/>
+                        <TextBlock Text="{Binding Champion}" FontSize="15"/>
+                        <TextBlock Text="{Binding Queue}" FontSize="15"/>
+                        <TextBlock Text="{Binding Season}" FontSize="15"/>
+                        <TextBlock Text="{Binding Timestamp}" FontSize="15"/>
+                        <TextBlock Text="{Binding Role}" FontSize="15"/>
+                        <TextBlock Text="{Binding Lane}" FontSize="15"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
