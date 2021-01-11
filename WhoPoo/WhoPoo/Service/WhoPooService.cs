@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System.Threading.Tasks;
-using WhoPoo.Data;
 using WhoPoo.Service.Response;
 
 namespace WhoPoo.Service
@@ -22,31 +21,31 @@ namespace WhoPoo.Service
         }
 
         /// <summary>
-        /// 유저 이름을 입력받아 최근 게임 전적을 반환해줌
+        /// 유저 이름을 입력받아 최근 게임 전적 반환
         /// </summary>
         /// <param name="name"></param>
         /// <param name="startIndex"></param>
         /// <param name="endIndex"></param>
         /// <returns></returns>
-        public async Task<Response<MatchListResponse>> GetMatchList(string name, int startIndex = 0, int endIndex = 0)
+        public async Task<MatchListResponse> GetMatchList(string name, int startIndex = 0, int endIndex = 0)
         {
             string requestUrl = GET_MATCH_LIST_URL + name;
             SetRestRequest(requestUrl, Method.GET);
             var response = await client.ExecuteAsync(request);
-            return JsonConvert.DeserializeObject<Response<MatchListResponse>>(response.Content);
+            return JsonConvert.DeserializeObject<MatchListResponse>(response.Content);
         }
 
         /// <summary>
-        /// 특정 게임 ID를 입력받아 해당 게임에 대한 정보를 반환해줌 
+        /// 특정 게임 ID를 입력받아 해당 게임에 대한 정보 반환
         /// </summary>
         /// <param name="gameId"></param>
         /// <returns></returns>
-        public async Task<Response<Nothing>> GetMatches(long gameId)
+        public async Task<MatchesResponse> GetMatches(long gameId)
         {
             string requestUrl = GET_MATCHES_URL + gameId;
             SetRestRequest(requestUrl, Method.GET);
             var response = await client.ExecuteAsync(request);
-            return JsonConvert.DeserializeObject<Response<Nothing>>(response.Content);
+            return JsonConvert.DeserializeObject<MatchesResponse>(response.Content);
         }
 
         private void SetRestRequest(string resource, Method method)

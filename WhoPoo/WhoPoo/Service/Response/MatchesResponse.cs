@@ -3,12 +3,12 @@ using WhoPoo.Model;
 
 namespace WhoPoo.Service.Response
 {
-    public class MatchListResponse
+    public class MatchesResponse
     {
         [JsonProperty("result")]
-        public MatchListResultModel Result { get; set; }
+        public MatchesModel Result { get; set; }
 
         [JsonProperty("status")]
-        public int Status { get; set; }
+        public long Status { get; set; }
     }
 }

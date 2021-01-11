@@ -62,8 +62,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\Response.cs" />
-    <Compile Include="Model\WhoPooModel.cs" />
+    <Compile Include="Model\BanModel.cs" />
+    <Compile Include="Model\MatchesModel.cs" />
+    <Compile Include="Model\MatchesResultModel.cs" />
+    <Compile Include="Model\MatchListModel.cs" />
+    <Compile Include="Model\MatchListResultModel.cs" />
+    <Compile Include="Model\TeamModel.cs" />
+    <Compile Include="Service\Response\MatchesResponse.cs" />
     <Compile Include="Service\Response\MatchListResponse.cs" />
     <Compile Include="Service\WhoPooService.cs" />
     <Page Include="MainWindow.xaml">
