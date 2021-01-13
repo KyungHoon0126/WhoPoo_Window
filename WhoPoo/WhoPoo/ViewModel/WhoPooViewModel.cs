@@ -73,14 +73,14 @@ namespace WhoPoo.ViewModel
         #endregion
 
         #region Command Method
-        private bool CanGetMatchList()
+        private bool IsValidName()
         {
             return (Name != null && Name.Trim().Length > 0) ? true : false;
         }
 
         private async void GetMatchList()
         {
-            if (CanGetMatchList())
+            if (IsValidName())
             {
                 try
                 {
@@ -97,9 +97,25 @@ namespace WhoPoo.ViewModel
                 }
             }
         }
+
+        private async void GetLeague()
+        {
+            if (IsValidName())
+            {
+                try
+                {
+                    var response = await whoPooService.GetLeague(Name);
+
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("GET LEAGUE ERROR : " + e.Message);
+                }
+            }
+        }
         #endregion
 
-        private async void LoadGetMatches(long gameId)
+        private async void GetMatches(long gameId)
         {
             var response = await whoPooService.GetMatches(gameId);
         }

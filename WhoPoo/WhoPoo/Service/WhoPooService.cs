@@ -7,6 +7,7 @@ namespace WhoPoo.Service
 {
     public class WhoPooService
     {
+        private const string GET_LEAGUE_URL = "/league/";
         private const string GET_MATCHES_URL = "/matches/";
         private const string GET_MATCH_LIST_URL = "/matchlists/";
 
@@ -18,6 +19,19 @@ namespace WhoPoo.Service
             client = new RestClient(Config.SERVER_ADDRESS);
             request = new RestRequest();
             request.AddHeader("Content-Type", "application/json");
+        }
+
+        /// <summary>
+        /// 유저 이름을 입력받아 랭크 정보를 반환
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<LeagueResponse> GetLeague(string name)
+        {
+            string requestUrl = GET_LEAGUE_URL + name;
+            SetRestRequest(requestUrl, Method.GET);
+            var response = await client.ExecuteAsync(request);
+            return JsonConvert.DeserializeObject<LeagueResponse>(response.Content);
         }
 
         /// <summary>
