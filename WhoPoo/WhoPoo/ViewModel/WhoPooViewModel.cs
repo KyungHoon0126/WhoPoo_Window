@@ -14,8 +14,19 @@ namespace WhoPoo.ViewModel
         private WhoPooService whoPooService;
 
         #region Properties
-        public ObservableCollection<MatchListModel> MatchListItems { get; set; }
-        public ObservableCollection<MatchesModel> MatchesItems { get; set; }
+        private ObservableCollection<MatchListModel> _matchListItems;
+        public ObservableCollection<MatchListModel> MatchListItems
+        {
+            get => _matchListItems;
+            set => SetProperty(ref _matchListItems, value);
+        }
+
+        private ObservableCollection<MatchesModel> _matchesItems;
+        public ObservableCollection<MatchesModel> MatchesItems
+        {
+            get => _matchesItems;
+            set => SetProperty(ref _matchesItems, value);
+        }
 
         private string _name;
         public string Name

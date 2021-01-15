@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoPoo"
+        xmlns:converter="clr-namespace:WhoPoo.Converters"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="WhoPoo" Height="450" Width="800">
+
+    <!--<Window.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding SearchMatchListCommand}"/>
+    </Window.InputBindings>-->
+
+    <Window.Resources>
+        <converter:LaneConverter x:Key="LaneConverter"/>
+        <converter:RoleConverter x:Key="RoleCovnerter"/>
+        <converter:ChampionValueToNameConverter x:Key="ChampionValueToNameConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,6 +27,7 @@
         
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
             <TextBox Text="{Binding Name}" 
+                     VerticalContentAlignment="Center"
                      Height="50" Width="700"/>
             <Button Content="조회하기" 
                     Width="80"
@@ -26,14 +39,20 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding PlatformId}" FontSize="15"/>
-                        <TextBlock Text="{Binding GameId}" FontSize="15"/>
-                        <TextBlock Text="{Binding Champion}" FontSize="15"/>
-                        <TextBlock Text="{Binding Queue}" FontSize="15"/>
-                        <TextBlock Text="{Binding Season}" FontSize="15"/>
-                        <TextBlock Text="{Binding Timestamp}" FontSize="15"/>
-                        <TextBlock Text="{Binding Role}" FontSize="15"/>
-                        <TextBlock Text="{Binding Lane}" FontSize="15"/>
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="15"/>
+                                <Setter Property="FontFamily" Value="AppleSDGothicNeoB00"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="{Binding PlatformId}"/>
+                        <TextBlock Text="{Binding GameId}"/>
+                        <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>
+                        <TextBlock Text="{Binding Queue}"/>
+                        <TextBlock Text="{Binding Season}"/>
+                        <TextBlock Text="{Binding Timestamp}"/>
+                        <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}역할 : {0}}"/>
+                        <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}라인 : {0}}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

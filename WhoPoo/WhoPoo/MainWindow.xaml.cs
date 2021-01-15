@@ -22,4 +22,4 @@ namespace WhoPoo
             this.DataContext = whoPooViewModel;
         }
     }
-}
+}   

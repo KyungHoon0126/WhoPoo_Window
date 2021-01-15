@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WhoPoo.Model.Enums
 {
@@ -160,5 +158,13 @@ namespace WhoPoo.Model.Enums
         Yone = 777,
         Sett = 875,
         Lillia = 876
+    }
+
+    public class EChampionsModel
+    {
+        public static List<EChampions> EChampions
+        {
+            get => Enum.GetValues(typeof(EChampions)).Cast<EChampions>().ToList();       
+        }
     }
 }
