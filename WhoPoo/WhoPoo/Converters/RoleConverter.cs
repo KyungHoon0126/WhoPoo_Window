@@ -15,7 +15,9 @@ namespace WhoPoo.Converters
                 case "DUO":
                     return "듀오";
                 case "DUO_SUPPORT":
-                    return "듀오_서포트";
+                    return "듀오 서포트";
+                case "DUO_CARRY":
+                    return "듀오 캐리";
                 case "NONE":
                     return "없음";
                 case "SOLO":

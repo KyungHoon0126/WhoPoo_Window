@@ -7,7 +7,7 @@
         xmlns:converter="clr-namespace:WhoPoo.Converters"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="WhoPoo" Height="450" Width="800">
+        Title="WhoPoo" Height="970" Width="1720">
 
     <!--<Window.InputBindings>
         <KeyBinding Key="Return" Command="{Binding SearchMatchListCommand}"/>
@@ -18,44 +18,78 @@
         <converter:RoleConverter x:Key="RoleCovnerter"/>
         <converter:ChampionValueToNameConverter x:Key="ChampionValueToNameConverter"/>
     </Window.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-            <TextBox Text="{Binding Name}" 
-                     VerticalContentAlignment="Center"
-                     Height="50" Width="700"/>
-            <Button Content="조회하기" 
-                    Width="80"
-                    Command="{Binding SearchMatchListCommand}"/>
-        </StackPanel>
 
-        <ListView x:Name="lvMatchList" Grid.Row="1" Margin="5"
-                  ItemsSource="{Binding MatchListItems}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="15"/>
-                                <Setter Property="FontFamily" Value="AppleSDGothicNeoB00"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Text="{Binding PlatformId}"/>
-                        <TextBlock Text="{Binding GameId}"/>
-                        <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>
-                        <TextBlock Text="{Binding Queue}"/>
-                        <TextBlock Text="{Binding Season}"/>
-                        <TextBlock Text="{Binding Timestamp}"/>
-                        <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}역할 : {0}}"/>
-                        <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}라인 : {0}}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <Grid Background="#5383E8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Source="/Assets/logo.png"
+                   Width="435" Height="200"/>
+
+            <Grid Grid.Row="2" 
+                  Background="White" 
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="540"/>
+                    <ColumnDefinition Width="84"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0" 
+                         Text="{Binding Name}" 
+                         Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                         VerticalContentAlignment="Center"/>
+
+                <Button Grid.Column="1"
+                        Content="조회" 
+                        Width="60" Height="30"
+                        Command="{Binding SearchMatchListCommand}"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <ListView x:Name="lvMatchList" Margin="5"
+                          ItemsSource="{Binding MatchListItems}"
+                          Visibility="Visible">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="FontSize" Value="20"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Setter Property="FontFamily" Value="굴림체"/>
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Width" Value="1720"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="{Binding PlatformId, StringFormat={}국가 : {0}}"/>
+                                <!--<TextBlock Text="{Binding GameId}"/>-->
+                                <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>
+                                <TextBlock Text="{Binding Queue, StringFormat={}큐 횟수 : {0}}"/>
+                                <TextBlock Text="{Binding Season, StringFormat={}{0}시즌}"/>
+                                <TextBlock Text="{Binding Timestamp,StringFormat={}시간 : {0}}"/>
+                                <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}역할 : {0}}"/>
+                                <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}라인 : {0}}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
