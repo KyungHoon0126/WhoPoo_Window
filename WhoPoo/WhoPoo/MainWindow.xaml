@@ -34,6 +34,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -51,38 +52,45 @@
 
                 <TextBox Grid.Column="0" 
                          Text="{Binding Name}" 
-                         Style="{StaticResource MaterialDesignComboBoxEditableTextBox}"
+                         Style="{StaticResource tbHintBoxStyle}"
+                         Tag="소환사명, 소환사명, ..."
+                         FontSize="15"
                          VerticalContentAlignment="Center"/>
 
                 <Button Grid.Column="1"
                         Content="조회" 
                         Width="60" Height="30"
+                        FocusVisualStyle="{x:Null}"
                         Command="{Binding SearchMatchListCommand}"/>
             </Grid>
 
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="4">
                 <ListView x:Name="lvMatchList" Margin="5"
                           ItemsSource="{Binding MatchListItems}"
-                          Visibility="Visible">
+                          SelectedItem="{Binding SelectedMatch}"
+                          SelectionChanged="lvMatchList_SelectionChanged"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          Visibility="Visible" Width="1000">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel Background="White">
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="Black"/>
                                         <Setter Property="FontSize" Value="20"/>
                                         <Setter Property="FontWeight" Value="SemiBold"/>
                                         <Setter Property="FontFamily" Value="굴림체"/>
-                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Margin" Value="7"/>
                                         <Setter Property="Width" Value="1720"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <TextBlock Text="{Binding PlatformId, StringFormat={}국가 : {0}}"/>
+                                <!--<TextBlock Text="{Binding PlatformId, StringFormat={}국가 : {0}}"/>-->
                                 <!--<TextBlock Text="{Binding GameId}"/>-->
+                                <!--<TextBlock Text="{Binding Queue, StringFormat={}큐 횟수 : {0}}"/>-->
+                                <!--<TextBlock Text="{Binding Season, StringFormat={}{0}시즌}"/>-->
+                                <TextBlock Text="{Binding Time, StringFormat=플레이 시간 : yyyy년 MM월 dd일 tt HH:mm:dd}"/>
                                 <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>
-                                <TextBlock Text="{Binding Queue, StringFormat={}큐 횟수 : {0}}"/>
-                                <TextBlock Text="{Binding Season, StringFormat={}{0}시즌}"/>
-                                <TextBlock Text="{Binding Timestamp,StringFormat={}시간 : {0}}"/>
+                                <!--<TextBlock Foreground="White" Style="{StaticResource TbCommonStyle}" Text="{Binding StartDate, StringFormat=yyyy년 MM월 dd일}"/>-->
                                 <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}역할 : {0}}"/>
                                 <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}라인 : {0}}"/>
                             </StackPanel>

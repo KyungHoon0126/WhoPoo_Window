@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace WhoPoo.Model
 {
@@ -27,5 +28,8 @@ namespace WhoPoo.Model
 
         [JsonProperty("lane")]
         public string Lane { get; set; }
+
+        [JsonProperty]
+        public DateTime Time { get; set; }
     }
 }
