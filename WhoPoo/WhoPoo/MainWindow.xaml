@@ -17,6 +17,13 @@
         <converter:LaneConverter x:Key="LaneConverter"/>
         <converter:RoleConverter x:Key="RoleCovnerter"/>
         <converter:ChampionValueToNameConverter x:Key="ChampionValueToNameConverter"/>
+        <converter:ChampionValueToImageConverter x:Key="ChampionValueToImageConverter"/>
+
+        <Style x:Key="tbChampionNameStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
 
     <Grid Background="#5383E8">
@@ -73,27 +80,46 @@
                           Visibility="Visible" Width="1000">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Background="White">
-                                <StackPanel.Resources>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                        <Setter Property="FontSize" Value="20"/>
-                                        <Setter Property="FontWeight" Value="SemiBold"/>
-                                        <Setter Property="FontFamily" Value="굴림체"/>
-                                        <Setter Property="Margin" Value="7"/>
-                                        <Setter Property="Width" Value="1720"/>
-                                    </Style>
-                                </StackPanel.Resources>
-                                <!--<TextBlock Text="{Binding PlatformId, StringFormat={}국가 : {0}}"/>-->
-                                <!--<TextBlock Text="{Binding GameId}"/>-->
-                                <!--<TextBlock Text="{Binding Queue, StringFormat={}큐 횟수 : {0}}"/>-->
-                                <!--<TextBlock Text="{Binding Season, StringFormat={}{0}시즌}"/>-->
-                                <TextBlock Text="{Binding Time, StringFormat=플레이 시간 : yyyy년 MM월 dd일 tt HH:mm:dd}"/>
-                                <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>
-                                <!--<TextBlock Foreground="White" Style="{StaticResource TbCommonStyle}" Text="{Binding StartDate, StringFormat=yyyy년 MM월 dd일}"/>-->
-                                <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}역할 : {0}}"/>
-                                <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}라인 : {0}}"/>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Background="White">
+                                    <StackPanel>
+                                        <Ellipse Margin="5" Width="100" Height="100">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding Champion, Converter={StaticResource ChampionValueToImageConverter}}"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+
+                                        <TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}}" Style="{StaticResource tbChampionNameStyle}">
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid> 
+
+                                <Grid Grid.Column="1">
+                                    <StackPanel Background="White">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="FontSize" Value="20"/>
+                                                <Setter Property="Margin" Value="5"/>
+                                                <Setter Property="Width" Value="1720"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <!--<TextBlock Text="{Binding PlatformId, StringFormat={}국가 : {0}}"/>-->
+                                        <!--<TextBlock Text="{Binding GameId}"/>-->
+                                        <!--<TextBlock Text="{Binding Queue, StringFormat={}큐 횟수 : {0}}"/>-->
+                                        <!--<TextBlock Text="{Binding Season, StringFormat={}{0}시즌}"/>-->
+                                        <TextBlock Text="{Binding Time, StringFormat=DATE : yyyy년 MM월 dd일 tt HH:mm:dd}"/>
+                                        <!--<TextBlock Text="{Binding Champion, Converter={StaticResource ChampionValueToNameConverter}, StringFormat={}챔피언 : {0}}"/>-->
+                                        <!--<TextBlock Foreground="White" Text="{Binding StartDate, StringFormat=yyyy년 MM월 dd일}"/>-->
+                                        <TextBlock Text="{Binding Role, Converter={StaticResource RoleCovnerter}, StringFormat={}ROLE : {0}}"/>
+                                        <TextBlock Text="{Binding Lane, Converter={StaticResource LaneConverter}, StringFormat={}LANE : {0}}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

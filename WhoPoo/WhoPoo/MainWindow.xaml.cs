@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using WhoPoo.Common;
 using WhoPoo.Model;
-using WhoPoo.Model.Enums;
 using WhoPoo.Service;
 using WhoPoo.ViewModel;
 
@@ -29,8 +28,7 @@ namespace WhoPoo
         private void lvMatchList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var championValue = (lvMatchList.SelectedItem as MatchListModel).Champion;
-            var champion = EChampionsModel.EChampions.Where(x => (int)x == championValue).FirstOrDefault();
-            MessageBox.Show(champion.ToString());
+            MessageBox.Show(ComUtil.ChampionValueToNameConvert(championValue).ToString());
         }
     }
 }   
