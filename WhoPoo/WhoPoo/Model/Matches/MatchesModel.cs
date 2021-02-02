@@ -37,5 +37,11 @@ namespace WhoPoo.Model
 
         [JsonProperty("teams")]
         public List<TeamModel> Teams { get; set; }
+
+        [JsonProperty("participants")]
+        public List<ParticipantModel> Participants { get; set; }
+
+        [JsonProperty("participantIdentities")]
+        public List<ParticipantIdentityModel> ParticipantIdentities { get; set; }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using WhoPoo.Model;
 using WhoPoo.Service;
+using WhoPoo.Service.Response;
 
 namespace WhoPoo.ViewModel
 {
@@ -55,6 +58,13 @@ namespace WhoPoo.ViewModel
             get => _selectedMatch;
             set => SetProperty(ref _selectedMatch, value);
         }
+
+        private List<PlayerModel> _playerItems;
+        public List<PlayerModel> PlayerItems
+        {
+            get => _playerItems;
+            set => SetProperty(ref _playerItems, value);
+        }
         #endregion
 
         #region Commands
@@ -75,6 +85,7 @@ namespace WhoPoo.ViewModel
         {
             MatchListItems = new ObservableCollection<MatchListModel>();
             MatchesItems = new ObservableCollection<MatchesModel>();
+            PlayerItems = new List<PlayerModel>();
         }
 
         private void InitCommands()
@@ -96,10 +107,23 @@ namespace WhoPoo.ViewModel
                 try
                 {
                     var response = await whoPooService.GetMatchList(name: Name, startIndex: StartIndex, endIndex: EndIndex);
-                    var matches = response.Result.Matches;
-                    if (matches != null && matches.Count > 0)
+                    var matchItems = new MatchListModel();
+
+                    foreach(var match in response.Result.Matches)
                     {
-                        MatchListItems = new ObservableCollection<MatchListModel>(matches);
+                        matchItems.PlatformId = match.PlatformId;
+                        matchItems.GameId = match.GameId;
+                        matchItems.Champion = match.Champion;
+                        matchItems.Queue = match.Queue;
+                        matchItems.Season = match.Season;
+                        matchItems.TimeStamp = match.TimeStamp;
+                        matchItems.Role = match.Role;
+                        matchItems.Lane = match.Lane;
+                        matchItems.Time = match.Time;
+
+                        var matches = GetMatches(match.GameId);
+
+                        MatchListItems.Add((MatchListModel)matchItems.Clone());
                     }
                 }
                 catch (Exception e)
@@ -109,7 +133,7 @@ namespace WhoPoo.ViewModel
             }
         }
 
-        private async void GetLeague()
+        private async void GetLeague(int gameId)
         {
             if (IsValidName())
             {
@@ -126,9 +150,10 @@ namespace WhoPoo.ViewModel
         }
         #endregion
 
-        private async void GetMatches(long gameId)
+        private async Task<MatchesResponse> GetMatches(long gameId)
         {
             var response = await whoPooService.GetMatches(gameId);
+            return response;
         }
     }
 }

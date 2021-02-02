@@ -79,6 +79,7 @@
     <Compile Include="Converters\LaneConverter.cs" />
     <Compile Include="Converters\ChampionValueToNameConverter.cs" />
     <Compile Include="Converters\RoleConverter.cs" />
+    <Compile Include="Converters\TimeStampToStringConverter.cs" />
     <Compile Include="Model\BanModel.cs" />
     <Compile Include="Model\Enums\EChampions.cs" />
     <Compile Include="Model\Enums\ESpells.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Model\MatchListModel.cs" />
     <Compile Include="Model\MatchListResultModel.cs" />
     <Compile Include="Model\MiniSeriesModel.cs" />
+    <Compile Include="Model\PlayerModel.cs" />
     <Compile Include="Model\TeamModel.cs" />
     <Compile Include="Service\Response\LeagueResponse.cs" />
     <Compile Include="Service\Response\MatchesResponse.cs" />
